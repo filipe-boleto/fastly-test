@@ -1,0 +1,16 @@
+{
+    "type": "module",
+    "private": true,
+    "dependencies": {
+        "@fastly/js-compute": "^3.39.2",
+        "cookie": "^1.1.1"
+    },
+    "devDependencies": {
+        "@fastly/cli": "^13.0.0"
+    },
+    "scripts": {
+        "build": "js-compute-runtime src/index.js bin/main.wasm",
+        "start": "fastly compute serve",
+        "deploy": "fastly compute publish"
+    }
+}
