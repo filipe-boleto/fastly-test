@@ -1,6 +1,6 @@
 # MonetizationOS Fastly Proxy
 
-[![Deploy to Fastly](https://deploy.edgecompute.app/button)](https://deploy.edgecompute.app/deploy)
+[![Deploy to Fastly](https://deploy.edgecompute.app/button)](https://deploy.edgecompute.app/deploy?repository=https://github.com/MonetizationOS/fastly-proxy-worker)
 
 A Fastly Compute service that proxies requests to an origin server and applies MonetizationOS surface decisions, behaviors, and component transformations.
 
