@@ -6,7 +6,7 @@ description = "MonetizationOS Proxy Worker for Fastly Compute"
 language = "javascript"
 manifest_version = 3
 name = "monetizationos-fastly-proxy"
-service_id = ""
+service_id = "YOUR_SERVICE_ID_HERE"
 
 [local_server]
 
