@@ -1,0 +1,47 @@
+# This file describes a Fastly Compute package. To learn more visit:
+# https://www.fastly.com/documentation/reference/compute/fastly-toml
+
+authors = ["MonetizationOS"]
+description = "MonetizationOS Proxy Worker for Fastly Compute"
+language = "javascript"
+manifest_version = 3
+name = "monetizationos-fastly-proxy"
+service_id = ""
+
+[local_server]
+
+  [local_server.backends]
+
+    [local_server.backends.origin]
+      url = "https://news.wingorigin.dev"
+      override_host = "news.wingorigin.dev"
+
+    [local_server.backends.monetization_api]
+      url = "https://api.monetizationos.com"
+      override_host = "api.monetizationos.com"
+
+  [local_server.config_stores]
+
+    [local_server.config_stores.config]
+      format = "inline-toml"
+
+      [local_server.config_stores.config.contents]
+        ORIGIN_URL = "https://news.wingorigin.dev"
+        SURFACE_SLUG = "future-herald-web"
+        AUTHENTICATED_USER_JWT_COOKIE_NAME = "__session"
+        ANONYMOUS_SESSION_COOKIE_NAME = "anon-session-id"
+        INJECT_SCRIPT_URL = "https://assets.monetizationos.com/web-components-latest.js"
+        MONETIZATION_OS_HOST = "https://api.monetizationos.com"
+        MONETIZATION_OS_ENDPOINTS_PREFIX = "/mos-endpoints/"
+
+  [local_server.secret_stores]
+
+    # Secret store data must be base64-encoded.
+    # To encode: echo -n 'your_secret_key' | base64
+    [[local_server.secret_stores.secrets]]
+      key = "MONETIZATION_OS_SECRET_KEY"
+      data = "c2tfcHJldmlld19jMjQyODBmNV9abU5pWkdGbFl6Z3VNV05sWkRFek5XTXVabU5qWldJMlltUXRaRE0xTXkwME5qWXlMV0psTlRjdE1XWXdNMkUwWmpkbE1EVXo="
+
+[scripts]
+  build = "npm run build"
+  post_init = "npm install"
