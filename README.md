@@ -42,7 +42,7 @@ Fastly's API surface exposes `onElement()` handlers. For the common path (conten
 ### 1. Install dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 2. Configure Fastly Service
@@ -74,11 +74,11 @@ Create the following in your Fastly service:
 The `fastly.toml` includes local server configuration with inline config store values. To run locally:
 
 ```bash
-npm start
+pnpm start
 ```
 
 ### 4. Deploy
 
 ```bash
-npm run deploy
+pnpm run deploy
 ```

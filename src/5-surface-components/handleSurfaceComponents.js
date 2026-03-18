@@ -55,7 +55,7 @@ export default async function handleSurfaceComponents(response, surfaceDecisions
     // Inject web components script into <head>
     if (env.INJECT_SCRIPT_URL) {
         transformer.onElement('head', (element) => {
-            element.append(`<script src="${env.INJECT_SCRIPT_URL}" async defer></script>`)
+            element.append(`<script src="${env.INJECT_SCRIPT_URL}" async defer></script>`, { html: true })
         })
         doRewrite = true
     }

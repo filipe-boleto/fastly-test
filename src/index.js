@@ -9,7 +9,7 @@ import handleSurfaceComponents from './5-surface-components/handleSurfaceCompone
 
 addEventListener('fetch', (event) => event.respondWith(handleRequest(event)))
 
-async function handleRequest(event) {
+export async function handleRequest(event) {
     const request = event.request
     const env = await loadEnv()
 

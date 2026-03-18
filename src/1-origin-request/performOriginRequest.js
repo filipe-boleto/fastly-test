@@ -9,7 +9,7 @@ export default function performOriginRequest(request, env) {
     const headers = new Headers(request.headers)
     headers.set('Accept-Encoding', 'identity')
 
-    return fetch(new Request(targetUrl, { method: request.method, headers, body: request.body }), {
+    return fetch(new Request(targetUrl, { method: request.method, headers, body: request.body, duplex: 'half' }), {
         backend: 'origin',
     })
 }
