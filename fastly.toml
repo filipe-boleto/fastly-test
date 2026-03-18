@@ -6,7 +6,7 @@ description = "MonetizationOS Proxy Worker for Fastly Compute"
 language = "javascript"
 manifest_version = 3
 name = "monetizationos-fastly-proxy"
-service_id = "YOUR_SERVICE_ID_HERE"
+service_id = ""
 
 [local_server]
 
@@ -40,8 +40,65 @@ service_id = "YOUR_SERVICE_ID_HERE"
     # To encode: echo -n 'your_secret_key' | base64
     [[local_server.secret_stores.secrets]]
       key = "MONETIZATION_OS_SECRET_KEY"
-      data = "c2tfcHJldmlld19jMjQyODBmNV9abU5pWkdGbFl6Z3VNV05sWkRFek5XTXVabU5qWldJMlltUXRaRE0xTXkwME5qWXlMV0psTlRjdE1XWXdNMkUwWmpkbE1EVXo="
+      data = "base64 value added here"
 
+[setup]
+
+  [setup.backends]
+
+    [setup.backends.origin]
+      description = "The origin URL for your website."
+
+    [setup.backends.monetization_api]
+      address = "api.monetizationos.com"
+      description = "The MonetizationOS API host."
+
+  [setup.config_stores]
+
+    [setup.config_stores.config]
+      description = "MonetizationOS configuration"
+
+      [[setup.config_stores.config.items]]
+        key = "ORIGIN_URL"
+        description = "The origin URL for your website."
+
+      [[setup.config_stores.config.items]]
+        key = "SURFACE_SLUG"
+        description = "The slug for the surface you want to target."
+
+      [[setup.config_stores.config.items]]
+        key = "AUTHENTICATED_USER_JWT_COOKIE_NAME"
+        description = "The cookie used to identify authenticated user JWT sessions."
+
+      [[setup.config_stores.config.items]]
+        key = "ANONYMOUS_SESSION_COOKIE_NAME"
+        description = "The cookie used to identify anonymous sessions."
+
+      [[setup.config_stores.config.items]]
+        key = "INJECT_SCRIPT_URL"
+        description = "The URL of the script to inject for web components."
+        value = "https://assets.monetizationos.com/web-components-latest.js"
+
+      [[setup.config_stores.config.items]]
+        key = "MONETIZATION_OS_HOST"
+        description = "The MonetizationOS API host."
+        value = "https://api.monetizationos.com"
+
+      [[setup.config_stores.config.items]]
+        key = "MONETIZATION_OS_ENDPOINTS_PREFIX"
+        description = "The MonetizationOS API endpoints prefix."
+        value = "/mos-endpoints/"
+
+  [setup.secret_stores]
+
+    [setup.secret_stores.secrets]
+      description = "MonetizationOS secrets"
+
+      [[setup.secret_stores.secrets.items]]
+        key = "MONETIZATION_OS_SECRET_KEY"
+        description = "Your MonetizationOS Secret Key, base64-encoded. To encode: echo -n 'your_secret_key' | base64"
+
+        
 [scripts]
-  build = "npm run build"
-  post_init = "npm install"
+  build = "pnpm run build"
+  post_init = "pnpm install"
