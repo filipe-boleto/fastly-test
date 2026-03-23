@@ -1,20 +1,26 @@
 # MonetizationOS Fastly Proxy
 
-[![Deploy to Fastly](https://deploy.edgecompute.app/button)](https://deploy.edgecompute.app/deploy?repository=https://github.com/MonetizationOS/fastly-proxy-worker)
 
-A Fastly Compute service that proxies requests to an origin server and applies MonetizationOS surface decisions, behaviors, and component transformations.
+[MonetizationOS](https://monetizationos.com) powers monetization for human and bot users alike. Use this Fastly edge compute to proxy your website and integrate MonetizationOS Surfaces, enabling seamless monetization experiences for sites served with static HTML.
 
-This is the Fastly Compute equivalent of the Cloudflare Worker in the parent directory.
+This worker includes handling for both HTTP response modification and CSS-targeted Components for content modifications including: removal/truncation, displaying offerings, and custom messaging.
+
+Read more about using MonetizationOS at [docs.monetizationos.com](https://docs.monetizationos.com).
+
+
+This Edge Compute Proxy is based on our [cloudflare worker](https://github.com/MonetizationOS/cloudflare-proxy-worker)
+
+## Getting Started
+
+[![Deploy to Fastly](https://deploy.edgecompute.app/button)](https://deploy.edgecompute.app/deploy)
+
 
 ## Architecture
 
 The worker processes requests through a pipeline:
 
-1. **Origin Request** — Proxies the request to the configured origin server (or handles MonetizationOS custom endpoint requests)
-2. **Rewrite Origin Response** — Rewrites origin URLs in headers and body to match the proxy's URL
-3. **Surface Decisions** — Fetches surface decisions from the MonetizationOS API
-4. **Surface Behavior** — Applies HTTP-level behaviors (headers, cookies, redirects)
-5. **Surface Components** — Applies HTML-level component transformations using [`HTMLRewritingStream`](https://www.fastly.com/blog/rewriting-html-with-the-fastly-javascript-sdk) (streaming, lol-html based)
+1. Applies HTML-level component transformations using [`HTMLRewritingStream`](https://www.fastly.com/blog/rewriting-html-with-the-fastly-javascript-sdk) (streaming, lol-html based)
+
 
 ## Key Differences from Cloudflare Version
 
