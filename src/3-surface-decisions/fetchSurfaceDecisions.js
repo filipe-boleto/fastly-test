@@ -3,7 +3,7 @@
  * Uses Fastly backend for the outgoing request instead of Cloudflare's direct fetch.
  * The Cloudflare-specific `cf` properties are omitted from the request body.
  */
-export default async function fetchSurfaceDecisions(env, { surfaceSlug, anonymousIdentifier, userJwt, path, pageMetadata }) {
+export default async function fetchSurfaceDecisions(env, { surfaceSlug, anonymousIdentifier, userJwt, path, url, pageMetadata }) {
     if (!env.MONETIZATION_OS_SECRET_KEY) {
         console.warn('MONETIZATION_OS_SECRET_KEY is not set, skipping surface decisions')
         return null
@@ -23,6 +23,9 @@ export default async function fetchSurfaceDecisions(env, { surfaceSlug, anonymou
                 resource: {
                     id: path,
                     meta: pageMetadata,
+                },
+                http: {
+                    url,
                 },
             }),
             headers: {
